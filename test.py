@@ -24,32 +24,33 @@ face = sample_img[y:y+height,x:x+width]
 cv2.imshow('output',face) 
 cv2.waitKey(0) 
 
-# #  extract its features
-# image = Image.fromarray(face)
-# image = image.resize((224,224))
+#  extract its features
+image = Image.fromarray(face)
+image = image.resize((224,224))
 
-# face_array = np.asarray(image)
+face_array = np.asarray(image)
 
-# face_array = face_array.astype('float32')
+face_array = face_array.astype('float32')
 
-# expanded_img = np.expand_dims(face_array,axis=0)
-# preprocessed_img = preprocess_input(expanded_img)
-# result = model.predict(preprocessed_img).flatten()
+expanded_img = np.expand_dims(face_array,axis=0)
+preprocessed_img = preprocess_input(expanded_img)
+result = model.predict(preprocessed_img).flatten()
 
-# # print(result)
-# # print(result.shape)
+# print(result)
+# print(result.shape)
 
-# # find the cosine distance of current image with all the 8655 features
-# similarity = []
-# for i in range(len(feature_list)):
-#     similarity.append(cosine_similarity(result.reshape(1,-1),feature_list[i].reshape(1,-1))[0][0])
+# find the cosine distance of current image with all the 8655 features
+similarity = []
+for i in range(len(feature_list)):
+    similarity.append(cosine_similarity(result.reshape(1,-1),feature_list[i].reshape(1,-1))[0][0])
 
-# # print(len(similarity))
+# print(len(similarity))
 
-# # recommend that image
-# index_pos = sorted(list(enumerate(similarity)),reverse=True,key=lambda x:x[1])[0][0]
+# recommend that image
+index_pos = sorted(list(enumerate(similarity)),reverse=True,key=lambda x:x[1])[0][0]
 
-# temp_img = cv2.imread(filenames[index_pos])
-# cv2.imshow('output',temp_img)
-# cv2.waitKey(0) 
+temp_img = cv2.imread(filenames[index_pos])
+cv2.imshow('output',temp_img)
+cv2.waitKey(0) 
+
 
